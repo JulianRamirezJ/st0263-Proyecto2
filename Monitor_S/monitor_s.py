@@ -2,7 +2,9 @@ import multiprocessing as mp
 import random as rm
 import time as t
 
-def start_process(instance_state):
+def start_process(instance_state, event):
+    event.wait()
+    print("M_S started")
     instance_state['instance01'] = [True,30]
     instance_state['instance02'] = [True,40]
     while True:
