@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+//Messages
+
+message Alive{
+    string alive = 1;
+}
+
+message Metric{
+    int64 delivery = 1;
+}
+
+//Call message that doesn't containt anything
+message Nulo{
+}
+
+
+service Monitor{
+    rpc get_metric(Nulo) returns (Metric);
+    rpc is_alive (Nulo) returns (Alive);
+}
