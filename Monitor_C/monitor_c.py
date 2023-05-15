@@ -1,19 +1,41 @@
-import multiprocessing as mp
-import random as rm
-import time as t
+import grpc
+from concurrent import futures
 
-def start_process(instance_state):
-    instance_state['instance01'] = [True,30]
-    instance_state['instance02'] = [True,40]
-    while True:
-        r = rm.randint(0, 100)
-        if  r <= 10:
-            for key in instance_state.keys():
-                instance_state[key] = [False, 0]
-        elif r <= 30:
-            for key in instance_state.keys():
-                instance_state[key] = [True, 15]
-        elif r <= 60:
-            for key in instance_state.keys():
-                instance_state[key] = [True, 60]
-        t.sleep(3)
+from service_pb2_grpc import MonitorServicer, add_MonitorServicer_to_server
+from service_pb2 import Alive, Metric
+
+#Redefine methods or actions that we want the server to do when receibing an order
+class MonitorService(MonitorServicer):
+    #request is the param we definedd in proto
+
+    #This method test if server is alive
+    def is_alive(self, request, context):
+        return Alive(alive = "Holi")
+    
+    #Register order takes order and response with OrderConfirmation
+    def get_metric(self, request, context):
+        return Metric(delivery = 5)
+    
+
+def start():
+    #Inside this method we will start to generate our service
+
+    #How many threads or concurrent services to execute at the same time
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+
+    #Add service to server
+    add_MonitorServicer_to_server(MonitorService(), server)
+    
+    #Where to listen
+    server.add_insecure_port('[::]:50051')
+    print("server running in port 50051")
+
+    #Start server
+    server.start()
+
+    #Terminal where server is executed stays alive to see current state of server
+    server.wait_for_termination()
+
+
+if __name__ == "__main__":
+    start()
