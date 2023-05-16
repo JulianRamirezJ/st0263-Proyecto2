@@ -10,8 +10,15 @@
 #
 # 1. breve descripción de la actividad
 #
-En esta actividad se implemento un servicio de autoScaling el cual opera sobre instancias EC2 de AWS de amazon.
-Este grupo de autoScaling funcionara a traves de la simulacion del uso de cpu de las diferentes instancias que esten corriendo en el grupo.
+En esta actividad, se implementó un servicio de autoescalado utilizando instancias EC2 de AWS de Amazon. El sistema consta de tres componentes distintos: un monitor C, un monitor S y un controlador de autoescalado.
+
+El monitor C se encarga de tomar las métricas de CPU de las instancias. Para esta actividad, se simuló el funcionamiento de este componente. El monitor S se comunica con el monitor C a través de gRPC y obtiene las métricas generadas. A su vez, mantiene actualizada una memoria compartida. El controlador de autoescalado monitorea constantemente esta memoria y realiza el escalado hacia arriba o hacia abajo según sea necesario.
+
+Para este proyecto, se estableció un número mínimo de dos instancias y un máximo de cinco. La métrica utilizada para determinar el escalado hacia arriba es que el uso promedio de CPU de las instancias alcance el 70%. En caso contrario, para el escalado hacia abajo, la métrica es que el uso promedio de CPU esté por debajo del 30%.
+
+Toda la implementación se realizó en Python, haciendo uso de características como gRPC, multiprocessing y el SDK de Amazon. El grupo de autoescalado funciona mediante la simulación del uso de CPU de las diferentes instancias en el grupo.
+
+En conclusión, se desarrolló un sistema de autoescalado utilizando instancias EC2 de AWS, compuesto por un monitor C, un monitor S y un controlador de autoescalado. El sistema utiliza métricas de CPU y se implementó en Python, aprovechando las funcionalidades de gRPC, multiprocessing y el SDK de Amazon.
 
 ## 1.1. Que aspectos cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
 
