@@ -1,11 +1,14 @@
 import multiprocessing as mp
-import time
+import boto3
+from Controller.instance import instance
 
 def start_process(instance_state, event):
-    instance_state['instance01'] = [True,'localhost',30]
-    instance_state['instance02'] = [True,'localhost',30]
-    instance_state['instance03'] = [True,'localhost',30]
-    instance_state['instance02'] = [True,'localhost',30]
-    instance_state['instance02'] = [True,'localhost',30]
-    time.sleep(5)
-    event.set()
+    client = boto3.client('ec2')
+    resource = boto3.resource('ec2')
+    inst = instance(client=client, resource=resource, instance_state=instance_state, event=event)
+    inst.run()
+    
+
+
+    
+    
