@@ -39,6 +39,10 @@ Durante la actividad se lograron los siguientes aspectos:
 En general el diseño de esta aplicacion va de acuerdo a lo propuesto en clase
 ![proyecto2 drawio (1)](https://github.com/JulianRamirezJ/st0263-Proyecto2/assets/110442546/b477b348-ce1f-40b4-9b08-0ca965b352b2)
 
+Como podemos ver en la imagen la arquitectura se compone de 3 componentes, que son Monitor S, Monitor C y Controller ASG.
+El Monitor C desempeña la función crucial de recolectar las métricas de uso de la CPU de las instancias. Si bien en esta implementación se simuló su funcionamiento, es importante destacar que normalmente estaría en ejecución en cada instancia EC2 de Amazon. 
+Por otro lado, el Monitor S establece una comunicación bidireccional mediante gRPC con el Monitor C, permitiéndole obtener las métricas generadas por este último. Además, el Monitor S es responsable de mantener actualizada una memoria compartida, la cual actúa como un medio de comunicación entre los diferentes componentes. 
+El Controlador de Autoescalado, por su parte, monitorea constantemente esta memoria compartida y toma decisiones de escalado hacia arriba o hacia abajo en función de las métricas recibidas. Es importante mencionar que tanto el Monitor S como el Controlador ASG son lanzados como procesos separados en el mismo programa y utilizan un diccionario en memoria compartida para su intercambio de información. Todo el sistema ha sido implementado en Python, haciendo uso de características como gRPC, el lenguaje de programación Python y el SDK de Amazon.
 
 
 
