@@ -9,7 +9,6 @@
 # Proyecto 2, AutoScaling
 #
 ## 1. Breve descripción de la actividad
-#
 En esta actividad, se implementó un servicio de autoescalado utilizando instancias EC2 de AWS de Amazon. El sistema consta de tres componentes distintos: un monitor C, un monitor S y un controlador de autoescalado.
 
 El monitor C se encarga de tomar las métricas de CPU de las instancias. Para esta actividad, se simuló el funcionamiento de este componente. El monitor S se comunica con el monitor C a través de gRPC y obtiene las métricas generadas. A su vez, mantiene actualizada una memoria compartida. El controlador de autoescalado monitorea constantemente esta memoria y realiza el escalado hacia arriba o hacia abajo según sea necesario.
@@ -44,10 +43,11 @@ En general el diseño de esta aplicacion va de acuerdo a lo propuesto en clase
 
 ## 3. Descripción del ambiente de desarrollo y técnico: lenguaje de programación, librerias, paquetes, etc, con sus numeros de versiones.
 
-## como se compila y ejecuta.
+### 3.1. Como se compila y ejecuta.
 Para compilar y ejecutar el programa debe asegurarse que tenga instalado python, y las librerias proto, boto3.
 Ademas debe tener AWS CLI instalado, es a travez de este que debe realizar la configuracion de seguridad y autenticacion de su cuenta de AWS (donde se crearan las instancias).
-## detalles del desarrollo.
+
+### 3.2. Detalles del desarrollo.
 
 Este proyecto esta pensado para correr en una maquina manager y varias maquinas que sean parte del grupo de autoScaling. 
 
