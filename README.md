@@ -37,7 +37,8 @@ Durante la actividad se lograron los siguientes aspectos:
 ## 2. Información general de diseño de alto nivel, arquitectura, patrones, mejores prácticas utilizadas.
 
 En general el diseño de esta aplicacion va de acuerdo a lo propuesto en clase
-![proyecto2 drawio](https://github.com/JulianRamirezJ/st0263-Proyecto2/assets/110442546/296ac5e7-ea1c-4e8c-8ed8-ec386cce8b70)
+![proyecto2 drawio (1)](https://github.com/JulianRamirezJ/st0263-Proyecto2/assets/110442546/b477b348-ce1f-40b4-9b08-0ca965b352b2)
+
 
 
 
