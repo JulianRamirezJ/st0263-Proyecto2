@@ -10,7 +10,7 @@ class MonitorService(MonitorServicer):
 
     #This method test if server is alive
     def is_alive(self, request, context):
-        return Alive(alive = "Holi")
+        return Alive(alive = "True")
     
     #Register order takes order and response with OrderConfirmation
     def get_metric(self, request, context):
