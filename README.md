@@ -93,8 +93,8 @@ Todo lo relevante para esta actividad ya esta contenido en los otros numerales
 
 # referencias:
 
-## https://docs.python.org/3/library/asyncio.html
-## https://grpc.io/docs/languages/python/quickstart/
-## https://docs.python.org/3/library/multiprocessing.html
+- https://docs.python.org/3/library/asyncio.html
+- https://grpc.io/docs/languages/python/quickstart/
+- https://docs.python.org/3/library/multiprocessing.html
 
 #### versión README.md -> 1.0 (2022-agosto)
