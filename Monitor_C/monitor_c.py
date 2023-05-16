@@ -17,7 +17,7 @@ def change_cpu():
     global delay
     global current_delay
     global up
-    threading.Timer(2.0, change_cpu).start()
+    threading.Timer(5.0, change_cpu).start()
     print(cpu_usage)
     if current_delay > 0:
         current_delay += 1
