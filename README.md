@@ -8,7 +8,7 @@
 
 # Proyecto 2, AutoScaling
 #
-# 1. breve descripción de la actividad
+# 1. Breve descripción de la actividad
 #
 En esta actividad, se implementó un servicio de autoescalado utilizando instancias EC2 de AWS de Amazon. El sistema consta de tres componentes distintos: un monitor C, un monitor S y un controlador de autoescalado.
 
@@ -22,19 +22,20 @@ En conclusión, se desarrolló un sistema de autoescalado utilizando instancias 
 
 ## 1.1. Que aspectos cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
 
-Entre los aspectos propuestos para la actividad se logro:
-- Implementacion del Monitor C, el cual correra en cada instancia EC2 que este corriendo.
-- Implementacion del Monitor S, el cual se encargara de recibir las metricas del monitor C de cada instancia.
-- Implementacion del controladorASG, el cual a partir de la informacion que obtenga el monitor S decidira si montar o bajar instancias a traves del API SDK.
-- Implementacion de comunicacion grpc entre el monitor S y los monitores C ubicados en cada instancia. (Hearbeat y getMetrics)
-- Implementacion de memoria compartida para la comunicacion entre el monitor S y el controladorASG
-- Implementacion de la simulacion del uso de cpu de cada instancia (la simulacion se desarrollo dentro del monitor C)
+Durante la actividad se lograron los siguientes aspectos:
+
+- Se implementó el Monitor C, el cual se ejecuta en cada instancia EC2 en funcionamiento.
+ - Se implementó el Monitor S, encargado de recibir las métricas del Monitor C de cada instancia.
+- Se implementó el Controlador ASG, que utiliza la información proporcionada por el Monitor S para tomar decisiones sobre la creación o eliminación de instancias utilizando el SDK de la API.
+- Se estableció la comunicación gRPC entre el Monitor S y los Monitores C ubicados en cada instancia, utilizando los mensajes Heartbeat y GetMetrics.
+- Se implementó una memoria compartida para la comunicación entre el Monitor S y el Controlador ASG.
+- Se desarrolló la simulación del uso de la CPU de cada instancia, la cual se encuentra dentro del Monitor C.
 
 ## 1.2. Que aspectos NO cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
 
 - En general todo lo propuesto se desarrollo satisfactoriamente
 
-# 2. información general de diseño de alto nivel, arquitectura, patrones, mejores prácticas utilizadas.
+# 2. Información general de diseño de alto nivel, arquitectura, patrones, mejores prácticas utilizadas.
 
 En general el diseño de esta aplicacion va de acuerdo a lo propuesto en clase
 ![proyecto2 drawio](https://github.com/JulianRamirezJ/st0263-Proyecto2/assets/110442546/296ac5e7-ea1c-4e8c-8ed8-ec386cce8b70)
