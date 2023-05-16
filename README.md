@@ -42,12 +42,29 @@ En general el diseño de esta aplicacion va de acuerdo a lo propuesto en clase
 Como podemos ver en la imagen la arquitectura se compone de 3 componentes, que son Monitor S, Monitor C y Controller ASG.
 El Monitor C desempeña la función crucial de recolectar las métricas de uso de la CPU de las instancias. Si bien en esta implementación se simuló su funcionamiento, es importante destacar que normalmente estaría en ejecución en cada instancia EC2 de Amazon. 
 Por otro lado, el Monitor S establece una comunicación bidireccional mediante gRPC con el Monitor C, permitiéndole obtener las métricas generadas por este último. Además, el Monitor S es responsable de mantener actualizada una memoria compartida, la cual actúa como un medio de comunicación entre los diferentes componentes. 
+
 El Controlador de Autoescalado, por su parte, monitorea constantemente esta memoria compartida y toma decisiones de escalado hacia arriba o hacia abajo en función de las métricas recibidas. Es importante mencionar que tanto el Monitor S como el Controlador ASG son lanzados como procesos separados en el mismo programa y utilizan un diccionario en memoria compartida para su intercambio de información. Todo el sistema ha sido implementado en Python, haciendo uso de características como gRPC, el lenguaje de programación Python y el SDK de Amazon.
 
 
 
 ## 3. Descripción del ambiente de desarrollo y técnico: lenguaje de programación, librerias, paquetes, etc, con sus numeros de versiones.
+Para el desarrollo del proyecto se utilizaron los siguientes elementos y tecnologías:
 
+1. Python 3: Se eligió Python como lenguaje de programación principal debido a su versatilidad, facilidad de uso y amplia disponibilidad de bibliotecas y frameworks que facilitan el desarrollo de aplicaciones.
+
+2. gRPC: Se utilizó gRPC como el framework de comunicación entre los diferentes componentes del sistema, permitiendo una comunicación eficiente y de alto rendimiento basada en el protocolo de buffers de Google.
+
+3. Multiprocessing: Se hizo uso del módulo de multiprocessing de Python para gestionar la ejecución concurrente de los diferentes componentes del sistema, como el Monitor C, el Monitor S y el Controlador ASG. Esto permitió aprovechar al máximo los recursos del sistema y mejorar la eficiencia del procesamiento.
+
+4. Memoria compartida: Se implementó una memoria compartida utilizando el módulo de multiprocessing de Python, que permitió a los componentes del sistema compartir información de manera segura y eficiente. El uso de memoria compartida fue fundamental para mantener actualizadas las métricas y decisiones de escalado.
+
+5. Compilador del protocol buffer: Se utilizó el compilador del protocol buffer para generar el código fuente de los mensajes y servicios definidos en los archivos .proto. Esto permitió establecer la comunicación entre los componentes del sistema de manera sencilla y eficiente.
+
+6. Random y Time: Se utilizaron los módulos de Random y Time de Python para simular el uso de CPU de las diferentes instancias. Estos módulos permitieron generar valores aleatorios de métricas y controlar el tiempo de espera entre mediciones, lo que contribuyó a la simulación realista del sistema.
+
+7. SDK de Amazon para Python: Se empleó el SDK de Amazon para Python para interactuar con los servicios de AWS, específicamente para realizar las operaciones de escalado hacia arriba o hacia abajo en función de las métricas obtenidas. El uso del SDK facilitó la integración con los servicios de AWS y brindó un enfoque práctico para la gestión de instancias EC2.
+
+Estas elecciones tecnológicas y herramientas fueron seleccionadas en base a su capacidad para cumplir con los requisitos del proyecto, proporcionar una implementación eficiente y facilitar la integración con los servicios de AWS.
 ### 3.1. Como se compila y ejecuta.
 Para compilar y ejecutar el programa debe asegurarse que tenga instalado python, y las librerias proto, boto3.
 Ademas debe tener AWS CLI instalado, es a travez de este que debe realizar la configuracion de seguridad y autenticacion de su cuenta de AWS (donde se crearan las instancias).
