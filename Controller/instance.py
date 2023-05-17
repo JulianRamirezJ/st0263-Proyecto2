@@ -16,7 +16,7 @@ class instance:
         self.add_instances(instances=instances)
         print('Cree las instancias por primera vez')
         self.event.set()
-        
+
         instance_creating_ids = []
         for instance in instances:
             instance_creating_ids.append(instance.id)
@@ -62,7 +62,11 @@ class instance:
                 if current_instance[0]:
                     sum += current_instance[2]
                     n += 1
-            return  n == 0 if 0 else sum/n
+            if n == 0:
+                return 0
+            else: 
+                return sum/n
+    
 
     def get_active_instance_ids(self):
         instances = []
