@@ -16,45 +16,39 @@ class instance:
         self.add_instances(instances=instances)
         print('Cree las instancias por primera vez')
         self.event.set()
-        cont = 0
-        while (cont < 2):
-            print('INgrese al contador')
-            cont = len(self.get_active_instance_ids())
-            t.sleep(5)
             
-        
+        instance_creating_ids = []
         while True:
-            print('Ciclo')
+            for instance_id in instance_creating_ids:
+                if self.instance_state[instance_id][0]:
+                    instance_creating_ids.remove(instance_id)
+
             active_instances_ids = self.get_active_instance_ids()
             active_instances_quantity = len(active_instances_ids)
+            instances_creating_quantity = len(instance_creating_ids)
+
+            prom = self.calculate_prom()
             if active_instances_quantity < 2:
-                print('Primer if')
-                new_instances = self.create_instances(
-                    min=(2-active_instances_quantity), max=(2-active_instances_quantity))
-                self.add_instances(instances=new_instances)
-            elif active_instances_quantity > 5:
-                print('Segundo if')
-                instance_ids = active_instances_ids[:(active_instances_quantity-5)]
-                self.terminate_instances(instance_ids=instance_ids)
-                self.remove_instances(instance_ids=instance_ids)
-            else:
-                print('Tercer if')
-                prom = self.calculate_prom()
-                if prom > 70 and active_instances_quantity < 5:
-                    print('Cuarto if')
+                if (active_instances_quantity + instances_creating_quantity) < 2: 
+                    n = 2 - (active_instances_quantity + instances_creating_quantity)
+                    new_instances = self.create_instances(
+                    min=n, max=n)
+                    self.add_instances(instances=new_instances)
+                    for instance in new_instances:
+                        instance_creating_ids.append(instance.id)
+            elif prom < 40 and active_instances_quantity > 2:
+                instance_id = ''
+                for key in self.instance_state.keys():
+                    current_instance = self.instance_state[key]
+                    if current_instance[0]:
+                        instance_id = key
+                        break
+                self.terminate_instances(instance_ids=[instance_id])
+                self.remove_instances([instance_id])
+            elif prom > 70 and active_instances_quantity < 5 and instances_creating_quantity == 0:
                     instance_created = self.create_instances(min=1, max=1)
                     self.add_instances(instances=instance_created)
-                if prom < 40 and active_instances_quantity > 2:
-                    print('Quinto if')
-                    instance_id = ''
-                    for key in self.instance_state.keys():
-                        current_instance = self.instance_state[key]
-                        if current_instance[0]:
-                            instance_id = key
-                            break
-                    self.terminate_instances(instance_ids=[instance_id])
-                    self.remove_instances([instance_id])
-
+                    instance_creating_ids.append(instance_created.id)
             t.sleep(10)
 
     def calculate_prom(self):
