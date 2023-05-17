@@ -51,7 +51,8 @@ class instance:
             elif not prom == 0 and prom > 70 and active_instances_quantity < 5 and instances_creating_quantity == 0:
                     instance_created = self.create_instances(min=1, max=1)
                     self.add_instances(instances=instance_created)
-                    instance_creating_ids.append(instance_created.id)
+                    for instance in instance_created:
+                        instance_creating_ids.append(instance.id)
             t.sleep(10)
 
     def calculate_prom(self):
