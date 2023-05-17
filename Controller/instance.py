@@ -18,6 +18,7 @@ class instance:
         cont = 0
         while (cont < 2):
             cont = len(self.get_active_instance_ids())
+            print(cont)
             t.sleep(5)
         
         while True:
