@@ -120,8 +120,11 @@ En el numeral anterior ya se describieron todos los parametros y configuraciones
 Una vez el usuario haya lanzado el servidor este podra observar como el nodo manager se encargara de aplicar el scaling up o scaling down segun el uso de cpu (simulado) que se tenga a traves de las diferentes instancias que esten activas.
 
 
-## 12. opcionalmente - si quiere mostrar resultados o pantallazos 
-Por desarrollar
+## 12. Resultados y pantallazos 
+
+Actualización del diccionario con las instancias:
+![image](https://github.com/JulianRamirezJ/st0263-Proyecto2/assets/57159295/0d9cb10d-a75b-49d5-9d50-50da162b5f64)
+
 
 
 ## 13. otra información que considere relevante para esta actividad.
