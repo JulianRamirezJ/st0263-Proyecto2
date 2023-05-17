@@ -92,6 +92,12 @@ En general el proyecto esta pensado para ser clonado en la direccion /home/ubunt
 ### Estructura
 ![image](https://github.com/JulianRamirezJ/st0263-Proyecto2/assets/110442546/a234c4d1-33c8-4de3-867f-824684d4588f)
 
+El proyecto se estructura mediante un árbol de directorios, en el que cada componente tiene su propia carpeta. En primer lugar, encontramos la carpeta "Monitor_C" que contiene el archivo principal llamado "monitor_c.py". A continuación, están las carpetas "Controller" y "Monitor_S", ambas con archivos principales del mismo nombre. Además, en la raíz del proyecto se encuentra un archivo llamado "main.py" que se encarga de iniciar los procesos del controlador y del monitor_s.
+
+Por último, se encuentra la carpeta "proto", que contiene el archivo que define la comunicación mediante el protocolo gRPC.
+
+Esta estructura de directorios organizada por componentes facilita la gestión y el mantenimiento del proyecto, permitiendo una ubicación clara y concisa de cada archivo y facilitando la comprensión de la relación entre los diferentes componentes.
+
 ## Instancia AWS
 Todo lo descrito aqui ya esta aplicado en diversas instancias de AWS
 
