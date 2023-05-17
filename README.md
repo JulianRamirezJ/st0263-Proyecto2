@@ -50,7 +50,7 @@ El Controlador de Autoescalado, por su parte, monitorea constantemente esta memo
 ## 3. Descripción del ambiente de desarrollo y técnico: lenguaje de programación, librerias, paquetes, etc, con sus numeros de versiones.
 Para el desarrollo del proyecto se utilizaron los siguientes elementos y tecnologías:
 
-1. Python 3: Se eligió Python como lenguaje de programación principal debido a su versatilidad, facilidad de uso y amplia disponibilidad de bibliotecas y frameworks que facilitan el desarrollo de aplicaciones.
+1. Python 3: Se eligió Python como lenguaje de programación principal debido a su versatilidad, facilidad de uso y amplia disponibilidad de bibliotecas y que facilitan el desarrollo de programas para realizar operaciones sobre la infraestructura.
 
 2. gRPC: Se utilizó gRPC como el framework de comunicación entre los diferentes componentes del sistema, permitiendo una comunicación eficiente y de alto rendimiento basada en el protocolo de buffers de Google.
 
