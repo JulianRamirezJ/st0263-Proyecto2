@@ -16,8 +16,11 @@ class instance:
         self.add_instances(instances=instances)
         print('Cree las instancias por primera vez')
         self.event.set()
-            
+        
         instance_creating_ids = []
+        for instance in instances:
+            instance_creating_ids.append(instance.id)
+
         while True:
             for instance_id in instance_creating_ids:
                 if self.instance_state[instance_id][0]:
@@ -36,7 +39,7 @@ class instance:
                     self.add_instances(instances=new_instances)
                     for instance in new_instances:
                         instance_creating_ids.append(instance.id)
-            elif prom < 40 and active_instances_quantity > 2:
+            elif not prom == 0 and prom < 40 and active_instances_quantity > 2:
                 instance_id = ''
                 for key in self.instance_state.keys():
                     current_instance = self.instance_state[key]
@@ -45,7 +48,7 @@ class instance:
                         break
                 self.terminate_instances(instance_ids=[instance_id])
                 self.remove_instances([instance_id])
-            elif prom > 70 and active_instances_quantity < 5 and instances_creating_quantity == 0:
+            elif not prom == 0 and prom > 70 and active_instances_quantity < 5 and instances_creating_quantity == 0:
                     instance_created = self.create_instances(min=1, max=1)
                     self.add_instances(instances=instance_created)
                     instance_creating_ids.append(instance_created.id)
@@ -59,7 +62,7 @@ class instance:
                 if current_instance[0]:
                     sum += current_instance[2]
                     n += 1
-            return sum / n
+            return  n == 0 if 0 else sum/n
 
     def get_active_instance_ids(self):
         instances = []
