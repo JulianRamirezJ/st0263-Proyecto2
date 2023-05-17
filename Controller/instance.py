@@ -18,7 +18,6 @@ class instance:
         cont = 0
         while (cont < 2):
             cont = len(self.get_active_instance_ids())
-            print(cont)
             t.sleep(5)
         
         while True:
@@ -70,7 +69,7 @@ class instance:
     def add_instances(self, instances):
         for instance in instances:
             self.instance_state[instance.id] = [
-                True, instance.private_ip_address, 30]
+                False, instance.private_ip_address, 0]
 
     def create_instances(self, min, max):
         return self.resource.create_instances(
