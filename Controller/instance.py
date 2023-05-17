@@ -14,8 +14,12 @@ class instance:
         self.terminate_instances(current_instance_ids)
         instances = self.create_instances(min=2, max=2)
         self.add_instances(instances=instances)
-        t.sleep(30)
         self.event.set()
+        cont = 0
+        while (cont < 2):
+            cont = len(self.get_active_instance_ids())
+            t.sleep(5)
+        
         while True:
             active_instances_ids = self.get_active_instance_ids()
             active_instances_quantity = len(active_instances_ids)
