@@ -14,29 +14,38 @@ class instance:
         self.terminate_instances(current_instance_ids)
         instances = self.create_instances(min=2, max=2)
         self.add_instances(instances=instances)
+        print('Cree las instancias por primera vez')
         self.event.set()
         cont = 0
         while (cont < 2):
+            print('INgrese al contador')
             cont = len(self.get_active_instance_ids())
             t.sleep(5)
+            
         
         while True:
+            print('Ciclo')
             active_instances_ids = self.get_active_instance_ids()
             active_instances_quantity = len(active_instances_ids)
             if active_instances_quantity < 2:
+                print('Primer if')
                 new_instances = self.create_instances(
                     min=(2-active_instances_quantity), max=(2-active_instances_quantity))
                 self.add_instances(instances=new_instances)
             elif active_instances_quantity > 5:
+                print('Segundo if')
                 instance_ids = active_instances_ids[:(active_instances_quantity-5)]
                 self.terminate_instances(instance_ids=instance_ids)
                 self.remove_instances(instance_ids=instance_ids)
             else:
+                print('Tercer if')
                 prom = self.calculate_prom()
                 if prom > 70 and active_instances_quantity < 5:
+                    print('Cuarto if')
                     instance_created = self.create_instances(min=1, max=1)
                     self.add_instances(instances=instance_created)
                 if prom < 40 and active_instances_quantity > 2:
+                    print('Quinto if')
                     instance_id = ''
                     for key in self.instance_state.keys():
                         current_instance = self.instance_state[key]
