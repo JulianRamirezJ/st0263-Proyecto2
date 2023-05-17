@@ -18,10 +18,15 @@ class instance:
         while True:
             active_instances_ids = self.get_active_instance_ids()
             active_instances_quantity = len(active_instances_ids)
+
             if active_instances_quantity < 2:
                 new_instances = self.create_instances(
                     min=(2-active_instances_quantity), max=(2-active_instances_quantity))
                 self.add_instances(instances=new_instances)
+            elif active_instances_quantity > 5:
+                instance_ids = active_instances_ids[:(active_instances_quantity-5)]
+                self.terminate_instances(instance_ids=instance_ids)
+                self.remove_instances(instance_ids=instance_ids)
             else:
                 prom = self.calculate_prom()
                 if prom > 70 and active_instances_quantity < 5:
