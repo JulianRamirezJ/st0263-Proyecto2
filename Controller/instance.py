@@ -48,7 +48,7 @@ class instance:
                         break
                 self.terminate_instances(instance_ids=[instance_id])
                 self.remove_instances([instance_id])
-            elif not prom == 0 and prom > 80 and active_instances_quantity < 5 and instances_creating_quantity == 0:
+            elif not prom == 0 and prom > 70 and active_instances_quantity < 5 and instances_creating_quantity == 0:
                     instance_created = self.create_instances(min=1, max=1)
                     self.add_instances(instances=instance_created)
                     for instance in instance_created:
